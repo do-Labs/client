@@ -20,6 +20,10 @@ type ActiveDevice struct {
 	sync.RWMutex
 }
 
+// NewProvisionalActiveDevice creates an ActiveDevice that is "provisional", in that it
+// should not be considered the global ActiveDevice. Instead, it should reside in thread-local
+// context, and can be weaved through the login machinery without trampling the actual global
+// ActiveDevice.
 func NewProvisionalActiveDevice(m MetaContext, u keybase1.UID, d keybase1.DeviceID, sigKey GenericKey, encKey GenericKey, deviceName string) *ActiveDevice {
 	return &ActiveDevice{
 		uid:           u,

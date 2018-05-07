@@ -257,12 +257,12 @@ type ExternalAPIRes struct {
 type API interface {
 	Get(APIArg) (*APIRes, error)
 	GetDecode(APIArg, APIResponseWrapper) error
+	GetResp(APIArg) (*http.Response, func(), error)
 	Post(APIArg) (*APIRes, error)
 	PostJSON(APIArg) (*APIRes, error)
 	PostDecode(APIArg, APIResponseWrapper) error
 	PostRaw(APIArg, string, io.Reader) (*APIRes, error)
 	Delete(APIArg) (*APIRes, error)
-	GetResp(APIArg) (*http.Response, func(), error)
 }
 
 type ExternalAPI interface {

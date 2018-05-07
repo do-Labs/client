@@ -107,7 +107,7 @@ func (e *LoginWithPaperKey) Run(m libkb.MetaContext) error {
 	m.CDebugf("Stored secret with LKS from paperkey")
 
 	// Remove our provisional active device, and fall back to global device
-	m = m.WithActiveDevice(nil)
+	m = m.WithGlobalActiveDevice()
 
 	// This could prompt but shouldn't because of the secret store.
 	if _, err = libkb.BootstrapActiveDeviceFromConfig(m, true); err != nil {
